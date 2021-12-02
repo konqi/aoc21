@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "day-1": "apps/day-1"
+    "day-1": "apps/day-1",
+    "day-2": "apps/day-2"
   }
 }
