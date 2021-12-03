@@ -21,7 +21,7 @@ const determineChange = (previousValue, currentValue) => {
 }
 
 const createWindow = (size: number) => {
-  const window: number[] = new Array(3).fill(undefined)
+  const window: number[] = new Array(size).fill(undefined)
   let cnt = 0
   return (value: number) => {
     window[cnt] = value

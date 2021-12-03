@@ -9,6 +9,7 @@
   },
   "private": true,
   "dependencies": {
+    "lodash": "^4.17.21",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
@@ -20,6 +21,7 @@
     "@nrwl/tao": "13.2.3",
     "@nrwl/workspace": "13.2.3",
     "@types/jest": "27.0.2",
+    "@types/lodash": "^4.14.177",
     "@types/node": "14.14.33",
     "@typescript-eslint/eslint-plugin": "~4.33.0",
     "@typescript-eslint/parser": "~4.33.0",
