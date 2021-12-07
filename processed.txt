@@ -1,0 +1,198 @@
+Statistical profiling result from isolate-0x108008000-12872-v8.log, (72 ticks, 1 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+      4    5.6%          /usr/lib/system/libsystem_pthread.dylib
+      2    2.8%          /usr/lib/system/libsystem_malloc.dylib
+      1    1.4%          /usr/lib/system/libsystem_kernel.dylib
+      1    1.4%          /usr/lib/libc++.1.dylib
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+
+ [C++]:
+   ticks  total  nonlib   name
+     26   36.1%   40.6%  T __ZN4node13native_module15NativeModuleEnv15CompileFunctionERKN2v820FunctionCallbackInfoINS2_5ValueEEE
+     20   27.8%   31.3%  t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+     13   18.1%   20.3%  T __kernelrpc_mach_port_set_attributes
+      2    2.8%    3.1%  T __ZN4node7binding18GetInternalBindingERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+      1    1.4%    1.6%  T __ZN4node7TTYWrap3NewERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+      1    1.4%    1.6%  T __ZN4node10contextify17ContextifyContext15CompileFunctionERKN2v820FunctionCallbackInfoINS2_5ValueEEE
+
+ [Summary]:
+   ticks  total  nonlib   name
+      0    0.0%    0.0%  JavaScript
+     63   87.5%   98.4%  C++
+      0    0.0%    0.0%  GC
+      8   11.1%          Shared libraries
+      1    1.4%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+     30   56.6%   41.7%  T __ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+     23   43.4%   31.9%  t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+     26   36.1%  T __ZN4node13native_module15NativeModuleEnv15CompileFunctionERKN2v820FunctionCallbackInfoINS2_5ValueEEE
+     26  100.0%    T __ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+     26  100.0%      LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+     26  100.0%        LazyCompile: ~nativeModuleRequire internal/bootstrap/loaders.js:306:29
+      2    7.7%          LazyCompile: ~createGlobalConsole internal/bootstrap/node.js:319:29
+      2  100.0%            Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      2    7.7%          Eval: ~<anonymous> stream.js:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      2    7.7%          Eval: ~<anonymous> internal/source_map/source_map_cache.js:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      2    7.7%          Eval: ~<anonymous> internal/modules/esm/loader.js:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      2    7.7%          Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      2    7.7%          Eval: ~<anonymous> fs.js:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          LazyCompile: ~setupPrepareStackTrace internal/bootstrap/node.js:254:32
+      1  100.0%            Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      1    3.8%          LazyCompile: ~setupBuffer internal/bootstrap/node.js:302:21
+      1  100.0%            Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      1    3.8%          LazyCompile: ~initializeCJSLoader internal/bootstrap/pre_execution.js:427:29
+      1  100.0%            LazyCompile: ~prepareMainThreadExecution internal/bootstrap/pre_execution.js:21:36
+      1    3.8%          Eval: ~<anonymous> tty.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          Eval: ~<anonymous> timers.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          Eval: ~<anonymous> net.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          Eval: ~<anonymous> internal/url.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          Eval: ~<anonymous> internal/process/task_queues.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          Eval: ~<anonymous> internal/modules/package_json_reader.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          Eval: ~<anonymous> internal/modules/esm/resolve.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          Eval: ~<anonymous> internal/fs/promises.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          Eval: ~<anonymous> internal/bootstrap/pre_execution.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          Eval: ~<anonymous> events.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    3.8%          Eval: ~<anonymous> buffer.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+
+     20   27.8%  t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+     14   70.0%    t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+      2   14.3%      LazyCompile: ~prepareMainThreadExecution internal/bootstrap/pre_execution.js:21:36
+      2  100.0%        Eval: ~<anonymous> internal/main/run_main_module.js:1:1
+      1    7.1%      t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+      1  100.0%        LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:462:28
+      1  100.0%          LazyCompile: ~resolveMainPath internal/modules/run_main.js:12:25
+      1  100.0%            LazyCompile: ~executeUserEntryPoint internal/modules/run_main.js:69:31
+      1    7.1%      LazyCompile: ~readFileHandle internal/fs/promises.js:291:30
+      1  100.0%        t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+      1    7.1%      LazyCompile: ~packageExportsResolve internal/modules/esm/resolve.js:499:31
+      1  100.0%        LazyCompile: ~resolveExports internal/modules/cjs/loader.js:440:24
+      1  100.0%          LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:462:28
+      1  100.0%            LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:816:35
+      1    7.1%      LazyCompile: ~onParseComplete internal/url.js:250:25
+      1  100.0%        t __ZN4node3url12_GLOBAL__N_15ParseERKN2v820FunctionCallbackInfoINS2_5ValueEEE
+      1  100.0%          LazyCompile: ~URL internal/url.js:338:14
+      1  100.0%            LazyCompile: ~pathToFileURL internal/url.js:1408:23
+      1    7.1%      LazyCompile: ~makeNodeErrorWithCode internal/errors.js:307:31
+      1  100.0%        LazyCompile: ~E internal/errors.js:343:11
+      1  100.0%          Eval: ~<anonymous> internal/errors.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    7.1%      LazyCompile: ~executeUserEntryPoint internal/modules/run_main.js:69:31
+      1  100.0%        Eval: ~<anonymous> internal/main/run_main_module.js:1:1
+      1    7.1%      LazyCompile: ~_addListener events.js:428:22
+      1  100.0%        LazyCompile: ~addListener events.js:496:58
+      1  100.0%          Eval: ~<anonymous> internal/bootstrap/switches/is_main_thread.js:1:1
+      1    7.1%      LazyCompile: ~Writable.write internal/streams/writable.js:258:36
+      1  100.0%        LazyCompile: ~value internal/console/constructor.js:261:20
+      1  100.0%          LazyCompile: ~log internal/console/constructor.js:362:6
+      1  100.0%            t __ZN4node9inspector12_GLOBAL__N_120InspectorConsoleCallERKN2v820FunctionCallbackInfoINS2_5ValueEEE
+      1    7.1%      LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:816:35
+      1  100.0%        LazyCompile: ~Module._load internal/modules/cjs/loader.js:725:24
+      1  100.0%          LazyCompile: ~executeUserEntryPoint internal/modules/run_main.js:69:31
+      1  100.0%            Eval: ~<anonymous> internal/main/run_main_module.js:1:1
+      1    7.1%      Eval: ~<anonymous> internal/util/types.js:1:1
+      1  100.0%        LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1  100.0%          LazyCompile: ~nativeModuleRequire internal/bootstrap/loaders.js:306:29
+      1  100.0%            Eval: ~<anonymous> internal/util/inspect.js:1:1
+      1    7.1%      Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      1    7.1%      Eval: ~<anonymous> /Users/konqi/git/privat/aoc/node_modules/tslib/tslib.js:40:11
+      1  100.0%        Eval: ~<anonymous> /Users/konqi/git/privat/aoc/node_modules/tslib/tslib.js:1:1
+      1  100.0%          LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+      1    5.0%    LazyCompile: ~get net.js:1702:6
+      1  100.0%      LazyCompile: ~Socket net.js:281:16
+      1  100.0%        LazyCompile: ~WriteStream tty.js:85:21
+      1  100.0%          LazyCompile: ~createWritableStdioStream internal/bootstrap/switches/is_main_thread.js:41:35
+      1  100.0%            LazyCompile: ~getStdout internal/bootstrap/switches/is_main_thread.js:120:19
+      1    5.0%    Eval: ~<anonymous> internal/bootstrap/loaders.js:1:1
+
+     13   18.1%  T __kernelrpc_mach_port_set_attributes
+      4   30.8%    t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+      1   25.0%      LazyCompile: ~setupProcessObject internal/bootstrap/node.js:273:28
+      1  100.0%        Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      1   25.0%      LazyCompile: ~getConstructorName internal/util/inspect.js:528:28
+      1  100.0%        LazyCompile: ~formatRaw internal/util/inspect.js:777:19
+      1  100.0%          LazyCompile: ~formatValue internal/util/inspect.js:708:21
+      1  100.0%            LazyCompile: ~inspect internal/util/inspect.js:265:17
+      1   25.0%      LazyCompile: ~<anonymous> /Users/konqi/git/privat/aoc/node_modules/tslib/tslib.js:113:50
+      1  100.0%        t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+      1  100.0%          LazyCompile: ~__awaiter /Users/konqi/git/privat/aoc/node_modules/tslib/tslib.js:111:26
+      1  100.0%            LazyCompile: ~run /Users/konqi/git/privat/aoc/dist/apps/day-6/main.js:64:13
+      1   25.0%      Eval: ~<anonymous> internal/process/esm_loader.js:1:1
+      1  100.0%        LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1  100.0%          LazyCompile: ~nativeModuleRequire internal/bootstrap/loaders.js:306:29
+      1  100.0%            Eval: ~<anonymous> internal/modules/cjs/loader.js:1:1
+
+      4    5.6%  /usr/lib/system/libsystem_pthread.dylib
+      1   25.0%    t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+      1  100.0%      LazyCompile: ~readFileSync fs.js:390:22
+      1  100.0%        LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+      1  100.0%          LazyCompile: ~Module.load internal/modules/cjs/loader.js:938:33
+      1  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:725:24
+
+      2    2.8%  T __ZN4node7binding18GetInternalBindingERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+      2  100.0%    T __ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+      2  100.0%      LazyCompile: ~internalBinding internal/bootstrap/loaders.js:138:45
+      1   50.0%        Eval: ~<anonymous> internal/worker/js_transferable.js:1:1
+      1  100.0%          LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1  100.0%            LazyCompile: ~nativeModuleRequire internal/bootstrap/loaders.js:306:29
+      1   50.0%        Eval: ~<anonymous> internal/util.js:1:1
+      1  100.0%          LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1  100.0%            LazyCompile: ~nativeModuleRequire internal/bootstrap/loaders.js:306:29
+
+      2    2.8%  /usr/lib/system/libsystem_malloc.dylib
+      2  100.0%    t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+      1   50.0%      t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+      1  100.0%        LazyCompile: ~<anonymous> /Users/konqi/git/privat/aoc/dist/apps/day-6/main.js:64:76
+      1  100.0%          t __ZN2v88internalL44Builtin_Impl_V8BreakIteratorPrototypeCurrentENS0_16BuiltinArgumentsEPNS0_7IsolateE
+      1  100.0%            LazyCompile: ~fulfilled /Users/konqi/git/privat/aoc/node_modules/tslib/tslib.js:114:31
+      1   50.0%      LazyCompile: ~setupPrepareStackTrace internal/bootstrap/node.js:254:32
+      1  100.0%        Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+
+      1    1.4%  UNKNOWN
+
+      1    1.4%  T __ZN4node7TTYWrap3NewERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+      1  100.0%    T __ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+      1  100.0%      LazyCompile: ~WriteStream tty.js:85:21
+      1  100.0%        LazyCompile: ~createWritableStdioStream internal/bootstrap/switches/is_main_thread.js:41:35
+      1  100.0%          LazyCompile: ~getStdout internal/bootstrap/switches/is_main_thread.js:120:19
+      1  100.0%            LazyCompile: ~get internal/console/constructor.js:206:14
+
+      1    1.4%  T __ZN4node10contextify17ContextifyContext15CompileFunctionERKN2v820FunctionCallbackInfoINS2_5ValueEEE
+      1  100.0%    T __ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+      1  100.0%      LazyCompile: ~wrapSafe internal/modules/cjs/loader.js:986:18
+      1  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+      1  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:938:33
+
+      1    1.4%  /usr/lib/system/libsystem_kernel.dylib
+
+      1    1.4%  /usr/lib/libc++.1.dylib
+
