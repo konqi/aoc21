@@ -1,19 +1,18 @@
 import { readFile } from 'fs/promises'
 
-const identity = (num: number) => num
-const calculateTriangularNumber = (num: number) => {
-  let triag = 0
-  while (num > 0) {
-    triag += num
-    --num
+const identity = (_max: number) => (num: number) => num
+const calculateTriangularNumber = (max: number) => {
+  const triangulars = [0]
+  for (let i = 1; i <= max; i++) {
+    triangulars[i] = triangulars[i - 1] + i
   }
 
-  return triag
+  return (num: number) => triangulars[num]
 }
 
 interface Settings {
   filename: string
-  costFn?: (num: number) => number
+  costFn?: (max: number) => (num: number) => number
 }
 const settings: Record<string, Settings> = {
   example: {
@@ -32,12 +31,11 @@ const settings: Record<string, Settings> = {
   },
 }
 
-const calculateFuelCost = (
-  maxPos: number,
-  numberOfCrabs: number,
-  inputNumbers: number[],
-  fuelCostFn = identity
-) => {
+const calculateFuelCost = (inputNumbers: number[], fuelCostFn = identity) => {
+  const maxPos = Math.max(...inputNumbers)
+  const numberOfCrabs = inputNumbers.length
+  const fn = fuelCostFn(maxPos)
+
   const differences = new Array(maxPos)
     .fill(0)
     .map(() => new Array(numberOfCrabs).fill(0).map(() => 0))
@@ -45,7 +43,7 @@ const calculateFuelCost = (
   for (let crabId = 0; crabId < numberOfCrabs; crabId++) {
     for (let targetPosition = 0; targetPosition < maxPos; targetPosition++) {
       const crabPosition = inputNumbers[crabId]
-      differences[targetPosition][crabId] = fuelCostFn(
+      differences[targetPosition][crabId] = fn(
         Math.abs(targetPosition - crabPosition)
       )
     }
@@ -65,12 +63,7 @@ const calc = async ({ filename, costFn }: Settings) => {
 
   const inputNumbers = input.split(',').map(Number)
 
-  const maxPos = Math.max(...inputNumbers)
-  const numberOfCrabs = inputNumbers.length
-
   const { winTargetPosition, maxDiffs } = calculateFuelCost(
-    maxPos,
-    numberOfCrabs,
     inputNumbers,
     costFn
   )
