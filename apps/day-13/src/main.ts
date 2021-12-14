@@ -16,6 +16,10 @@ const settings: Record<string, Settings> = {
     filename: 'input.txt',
     debug: false,
   },
+  realAlt: {
+    filename: 'inputAlternative.txt',
+    debug: false,
+  },
 }
 
 const foldInputRegex = /^fold along ([xy])=([0-9]*)$/
@@ -85,6 +89,7 @@ class Paper<T> {
   }
 
   finish() {
+    this.dimensions.y += this.dimensions.y % 2
     for (let x = 0; x <= this.dimensions.x; x++) {
       this.plane[x] = this.plane[x] ?? []
       for (let y = 0; y <= this.dimensions.y; y++) {
@@ -132,3 +137,4 @@ const run = async (settings: Settings) => {
 
 run(settings.example)
 run(settings.real)
+run(settings.realAlt)
