@@ -95,6 +95,7 @@ class Map {
 
   findPath(from: Coordinate, to: Coordinate) {
     const unvisited = flatten(this.graphMatrix)
+    const seen: Node[] = []
     let current = this.graphMatrix[from[0]][from[1]]
     current.tentativeDistance = 0
 
@@ -104,20 +105,34 @@ class Map {
         if (distanceToThisNode < node.tentativeDistance) {
           node.tentativeDistance = distanceToThisNode
           node.previous = current
+          if (seen.indexOf(node) < 0 && !node.visited) {
+            seen.push(node)
+          }
         }
       })
 
       current.visited = true
       const currentIndex = unvisited.indexOf(current)
       unvisited.splice(currentIndex, 1)
+      const seenIndex = seen.indexOf(current)
+      if (seenIndex >= 0) {
+        seen.splice(seenIndex, 1)
+      }
 
-      const neigborsOrderedByTentativeDistance = unvisited.sort(
-        (a, b) =>
-          (a.visited ? Infinity : a.tentativeDistance) -
-          (b.visited ? Infinity : b.tentativeDistance)
-      )
+      if (seen.length < unvisited.length) {
+        current = seen.sort(
+          (a, b) => a.tentativeDistance - b.tentativeDistance
+        )[0]
+      } else {
+        const neigborsOrderedByTentativeDistance = unvisited.sort(
+          (a, b) =>
+            (a.visited ? Infinity : a.tentativeDistance) -
+            (b.visited ? Infinity : b.tentativeDistance)
+        )
 
-      current = neigborsOrderedByTentativeDistance[0]
+        current = neigborsOrderedByTentativeDistance[0]
+      }
+
       if (unvisited.length % 1000 === 0) {
         console.log(`${new Date().toLocaleTimeString()} ${unvisited.length}`)
       }
@@ -150,6 +165,23 @@ const run = async (settings: Settings) => {
     tmpMap.push(line.split('').map(Number))
   }
 
+  partA(tmpMap)
+  partB(tmpMap)
+
+  console.log('END')
+}
+
+run(settings.example)
+run(settings.real)
+
+function partA(tmpMap: number[][]) {
+  const map = new Map()
+  tmpMap.forEach((row) => map.addRow(row))
+  map.toGraph()
+  console.log('Regular findPath:', map.findPath([0, 0], map.dimensions))
+}
+
+function partB(tmpMap: number[][]) {
   let bigMap = tmpMap.map((row) => [
     ...plus(row, 0),
     ...plus(row, 1),
@@ -167,25 +199,10 @@ const run = async (settings: Settings) => {
       ...plus(row, 4),
     ])
   )
-
-  const map = new Map()
-  tmpMap.forEach((row) => map.addRow(row))
-  map.toGraph()
-
-  //   big.print()
-
-  console.log('Regular findPath:', map.findPath([0, 0], map.dimensions))
-  //   map.print()
-  //   map.printDistances()
-
   const big = new Map()
   bigMap.forEach((row) => big.addRow(row))
+  console.log('Building graph - this could take a moment...')
   big.toGraph()
   console.log('Graph built')
   console.log('Big findPath:', big.findPath([0, 0], big.dimensions))
-
-  console.log('END')
 }
-
-run(settings.example)
-run(settings.real)
